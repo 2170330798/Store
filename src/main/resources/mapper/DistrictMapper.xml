@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace属性,用于指定当前的映射文件和哪个接口进行映射，需要指定接口的文件路径，需要标注包完整路径-->
+<mapper namespace="com.cy.store.mapper.DistrictMapper">
+
+    <select id="findByParent" resultType="com.cy.store.entity.District">
+        SELECT
+             id,parent,code,name
+        FROM
+              t_dict_district
+        WHERE
+              parent=#{parent}
+        ORDER BY
+              code ASC
+    </select>
+
+    <select id="findNameByCode" resultType="java.lang.String">
+        SELECT
+            name
+        FROM
+            t_dict_district
+        WHERE
+            code=#{code}
+
+    </select>
+    <!--自定义映射规则:resultMap-->
+    <!--
+        id: 给映射分配一个唯一的id值
+        type: 取值是一个类，表示的是数据库中的查询结果与java中那个实体类进行结果集映射
+    -->
+    <!--定义规则时主键不可以省略-->
+
+    <!--id的值表示映射接口的方法名称，直接在标签的内容部来编写SQL语句-->
+    <!--MyBatis不会让uid不会自增
+       useGeneratedKeys="true" 开启自增
+       keyProperty="uid"  表示将指定字段自增
+    -->
+
+    <!--SELECT
+
+       resultType:表示查询结果，只需要指定对应映射类的类型，并且包含完整映射接口：
+       resultMap:标签与类的对象属性不一样时，来自定义查询结规则
+    -->
+
+
+
+
+</mapper>
+
+
+        <!--在mybatis-config.xml中，使用包引入映射文件的代码-->
+
